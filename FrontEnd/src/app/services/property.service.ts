@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
+import { IProperty } from '../property/IProperty.interface';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -7,7 +10,15 @@ import { HttpClient } from '@angular/common/http';
 export class PropertyService {
   constructor(private http: HttpClient) {}
 
-  getAllProperties() {
-    return this.http.get('data/properties.json');
+  getAllProperties(): Observable<IProperty[]> {
+    return this.http.get('data/properties.json').pipe(
+      map((data: { [key: string]: any }) => {
+        const propertiesArray: Array<IProperty> = [];
+        for (let id in data) {
+          propertiesArray.push(data[id]);
+        }
+        return propertiesArray;
+      })
+    );
   }
 }
