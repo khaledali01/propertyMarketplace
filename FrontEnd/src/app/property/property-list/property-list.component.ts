@@ -9,7 +9,7 @@ import { IProperty } from '../IProperty.interface';
 })
 export class PropertyListComponent implements OnInit {
   constructor(private propertyService: PropertyService) {}
-  properties: Array<IProperty> = [];
+  properties: Array<IProperty>;
   ngOnInit(): void {
     this.propertyService.getAllProperties().subscribe(
       (data) => {

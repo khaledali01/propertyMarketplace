@@ -9,10 +9,12 @@ import { PropertyListComponent } from './property/property-list/property-list.co
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { PropertyService } from './services/property.service';
 import { AddPropertyComponent } from './property/add-property/add-property.component';
+import { PropertyDetailComponent } from './property/property-detail/property-detail.component';
 
 const appRoutes: Routes = [
   { path: '', component: PropertyListComponent },
   { path: 'sell', component: AddPropertyComponent },
+  { path: 'detail/:id', component: PropertyDetailComponent },
 ];
 
 @NgModule({
@@ -22,6 +24,7 @@ const appRoutes: Routes = [
     PropertyListComponent,
     NavBarComponent,
     AddPropertyComponent,
+    PropertyDetailComponent,
   ],
   imports: [BrowserModule, HttpClientModule, RouterModule.forRoot(appRoutes)],
   providers: [PropertyService],
